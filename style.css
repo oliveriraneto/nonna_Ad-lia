@@ -1,11 +1,15 @@
 :root {
-    --primary: #305084;
-    --secondary: #4F8Ef7;
-    --background: #f4f6fa;
+    --blue: #305084;
+    --blue-dk: #1e3560;
+    --blue-lt: #4a6fa5;
+    --cream: #e8e8e5;
+    --cream-lt: #f4f4f2;
     --white: #ffffff;
-    --text: #333;
-    --gray: #777;
-    --shadow: 0 10px 30px rgba(0, 0, 0, .12);
+    --text: #1c2840;
+    --muted: #5a6a84;
+    --gold: #c4922a;
+    --shadow: 0 12px 40px rgba(20, 35, 70, .10);
+    --radius: 20px;
 }
 
 * {
@@ -20,240 +24,529 @@ html {
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: var(--background);
+    background: var(--cream);
     color: var(--text);
 }
 
+h1,
+h2 {
+    font-family: 'Playfair Display', serif;
+}
 
-/* HERO */
+
+/* ===========================
+   HERO
+   =========================== */
 
 .hero {
+    position: relative;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 40px 20px;
-    background: linear-gradient( 135deg, var(--primary), #24406d);
-    color: white;
+    padding: 60px 20px 0;
+    background: linear-gradient(150deg, var(--blue-dk) 0%, var(--blue) 60%, var(--blue-lt) 100%);
+    color: var(--white);
+    overflow: hidden;
+}
+
+
+/* Círculos decorativos de fundo */
+
+.hero-bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .04);
+    pointer-events: none;
+}
+
+.c1 {
+    width: 500px;
+    height: 500px;
+    top: -120px;
+    left: -150px;
+}
+
+.c2 {
+    width: 350px;
+    height: 350px;
+    bottom: 60px;
+    right: -80px;
+    background: rgba(255, 255, 255, .05);
+}
+
+.c3 {
+    width: 180px;
+    height: 180px;
+    top: 40%;
+    left: 10%;
+    background: rgba(196, 146, 42, .08);
 }
 
 .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
     width: 100%;
-    max-width: 700px;
+    padding-bottom: 70px;
 }
 
 
-/* ===== LOGO ===== */
+/* LOGO */
 
 .logo-container {
-    width: 280px;
-    margin: auto;
-    margin-bottom: 40px;
-    padding: 18px;
-    background: #fff;
-    border: 4px solid #305084;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, .25);
-    transition: all .35s ease;
+    width: 190px;
+    height: 190px;
+    margin: 0 auto 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 0 0 3px var(--gold), 0 20px 60px rgba(0, 0, 0, .35);
+    transition: transform .35s ease, box-shadow .35s ease;
 }
 
 .logo-container:hover {
-    transform: translateY(-6px) scale(1.03);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, .35);
+    transform: translateY(-6px) scale(1.04);
+    box-shadow: 0 0 0 3px var(--gold), 0 30px 70px rgba(0, 0, 0, .45);
 }
 
 .logo {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     display: block;
-    object-fit: contain;
+}
+
+.hero-eyebrow {
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
 }
 
 .hero h1 {
-    font-size: 3rem;
-    margin-bottom: 15px;
+    font-size: 3.6rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, .25);
 }
 
 .subtitle {
-    max-width: 650px;
-    margin: auto;
-    margin-bottom: 35px;
-    font-size: 1.15rem;
+    font-size: 1rem;
     line-height: 1.8;
+    color: rgba(255, 255, 255, .8);
+    margin-bottom: 36px;
 }
 
 
-/* BOTÃO */
+/* BOTÃO WHATSAPP COM FOTO */
 
-.btn-whatsapp {
-    display: inline-block;
-    background: var(--secondary);
-    color: white;
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+}
+
+.btn-whatsapp-round {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
     text-decoration: none;
-    padding: 16px 38px;
-    border-radius: 40px;
+    background: rgba(255, 255, 255, .12);
+    border: 1.5px solid rgba(255, 255, 255, .28);
+    backdrop-filter: blur(10px);
+    border-radius: 60px;
+    padding: 10px 28px 10px 10px;
+    color: var(--white);
     font-weight: 600;
-    font-size: 18px;
-    transition: .3s;
-    box-shadow: 0 10px 25px rgba(79, 142, 247, .35);
+    font-size: .95rem;
+    transition: background .3s, transform .3s, box-shadow .3s;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .18);
 }
 
-.btn-whatsapp:hover {
-    transform: translateY(-5px);
-    background: #3A78DE;
+.btn-whatsapp-round:hover {
+    background: rgba(255, 255, 255, .2);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, .28);
+}
+
+.wpp-thumb {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2.5px solid var(--gold);
+    flex-shrink: 0;
+    background: #25D366;
+}
+
+.wpp-label {
+    line-height: 1.4;
+    font-size: .92rem;
+}
+
+.wpp-label small {
+    font-weight: 400;
+    font-size: .78rem;
+    color: rgba(255, 255, 255, .65);
+    display: block;
 }
 
 
-/* CONTAINER */
+/* LINKS SOCIAIS NO HERO */
+
+.hero-social {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: rgba(255, 255, 255, .75);
+    text-decoration: none;
+    font-size: .82rem;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 30px;
+    padding: 7px 16px;
+    transition: color .25s, border-color .25s, background .25s;
+}
+
+.social-link:hover {
+    color: var(--white);
+    border-color: rgba(255, 255, 255, .5);
+    background: rgba(255, 255, 255, .1);
+}
+
+
+/* DIVISOR WAVE */
+
+.hero-divider {
+    width: 100%;
+    line-height: 0;
+    margin-top: auto;
+}
+
+.hero-divider svg {
+    display: block;
+    width: 100%;
+    height: 70px;
+}
+
+
+/* ===========================
+   CONTAINER / FUNDO
+   =========================== */
 
 .container {
     width: 90%;
-    max-width: 1100px;
-    margin: 60px auto;
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 50px 0 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
 }
 
 
-/* CARDS */
+/* Fundo da área de conteúdo com padrão sutil */
+
+body {
+    background-color: var(--cream);
+    background-image: radial-gradient(circle at 20% 30%, rgba(48, 80, 132, .06) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(48, 80, 132, .05) 0%, transparent 50%), url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='1' fill='%23305084' fill-opacity='0.04'/%3E%3C/svg%3E");
+}
+
+
+/* ===========================
+   INTRO TEXT
+   =========================== */
+
+.intro-text {
+    background: var(--blue);
+    border-radius: var(--radius);
+    padding: 32px 44px;
+    color: rgba(255, 255, 255, .85);
+    font-size: .97rem;
+    line-height: 1.8;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--gold);
+    font-style: italic;
+    min-height: 60px;
+    /* reserva espaço mesmo vazio */
+}
+
+.intro-text p:empty::before {
+    content: "← Espaço reservado para o seu texto de apresentação";
+    color: rgba(255, 255, 255, .3);
+    font-size: .85rem;
+    font-style: normal;
+}
+
+
+/* ===========================
+   CARDS
+   =========================== */
 
 .card {
-    background: white;
-    padding: 40px;
-    margin-bottom: 40px;
-    border-radius: 20px;
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 44px 50px;
     box-shadow: var(--shadow);
-    transition: .3s;
+    border: 1px solid rgba(48, 80, 132, .08);
+    transition: transform .3s, box-shadow .3s;
 }
 
 .card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(20, 35, 70, .14);
+}
+
+.section-label {
+    display: inline-block;
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
 }
 
 .section h2 {
-    color: var(--primary);
-    margin-bottom: 25px;
-    font-size: 2rem;
+    font-size: 1.9rem;
+    color: var(--blue);
+    margin-bottom: 16px;
     position: relative;
+    padding-bottom: 14px;
 }
 
 .section h2::after {
     content: "";
-    width: 70px;
-    height: 4px;
-    background: var(--secondary);
-    display: block;
-    margin-top: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 46px;
+    height: 3px;
+    background: var(--gold);
     border-radius: 20px;
 }
 
 .section p {
-    color: #555;
+    color: var(--muted);
     line-height: 1.8;
-    margin-bottom: 15px;
+    margin-bottom: 14px;
+    font-size: .96rem;
 }
 
 
-/* CARDÁPIO */
+/* ===========================
+   BOTÃO PRIMÁRIO
+   =========================== */
 
-.menu-placeholder {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    margin-top: 25px;
+.btn-primary {
+    display: inline-block;
+    margin-top: 8px;
+    background: var(--blue);
+    color: var(--white);
+    text-decoration: none;
+    padding: 13px 32px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: .93rem;
+    transition: background .3s, transform .3s, box-shadow .3s;
+    box-shadow: 0 8px 20px rgba(48, 80, 132, .25);
 }
 
-.menu-item {
-    border: 2px dashed var(--primary);
-    border-radius: 15px;
-    padding: 25px;
-    text-align: center;
-    transition: .3s;
-}
-
-.menu-item:hover {
-    background: var(--primary);
-    color: white;
-    border-color: var(--primary);
-}
-
-.menu-item:hover p {
-    color: white;
-}
-
-.menu-item h3 {
-    margin-bottom: 12px;
-    color: var(--secondary);
-}
-
-.menu-item:hover h3 {
-    color: white;
+.btn-primary:hover {
+    background: var(--blue-dk);
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgba(48, 80, 132, .35);
 }
 
 
-/* CONTATO */
+/* ===========================
+   BOTÃO GOOGLE
+   =========================== */
+
+.btn-google {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    background: var(--cream-lt);
+    color: var(--blue);
+    text-decoration: none;
+    padding: 13px 28px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: .93rem;
+    border: 1.5px solid rgba(48, 80, 132, .15);
+    transition: background .3s, transform .3s, box-shadow .3s;
+    box-shadow: 0 6px 16px rgba(48, 80, 132, .08);
+}
+
+.btn-google svg {
+    color: var(--gold);
+    flex-shrink: 0;
+}
+
+.btn-google:hover {
+    background: var(--blue);
+    color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(48, 80, 132, .25);
+}
+
+.btn-google:hover svg {
+    color: var(--gold);
+}
+
+
+/* ===========================
+   HISTÓRIA
+   =========================== */
+
+.history-intro {
+    font-family: 'Playfair Display', serif;
+    font-style: italic !important;
+    font-size: 1.1rem;
+    color: var(--blue) !important;
+    margin-bottom: 18px !important;
+    opacity: .85;
+}
+
+
+/* ===========================
+   CONTATO
+   =========================== */
 
 .contact-info {
+    list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 18px;
-    font-size: 18px;
+    gap: 22px;
+    margin-top: 10px;
+}
+
+.contact-info li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.contact-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.contact-info strong {
+    display: block;
+    font-size: .72rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2px;
+}
+
+.contact-info p {
+    color: var(--text);
+    margin-bottom: 0;
 }
 
 
-/* RODAPÉ */
+/* ===========================
+   RODAPÉ
+   =========================== */
 
 footer {
-    background: var(--primary);
-    color: white;
+    background: var(--blue-dk);
+    color: rgba(255, 255, 255, .55);
     text-align: center;
-    padding: 35px 20px;
-    margin-top: 60px;
+    padding: 32px 20px;
+    font-size: .86rem;
 }
 
-footer p {
-    font-size: 15px;
+footer strong {
+    color: var(--gold);
+}
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, .2);
+    color: rgba(255, 255, 255, .6);
+    transition: color .25s, border-color .25s, background .25s;
+}
+
+.footer-social a:hover {
+    color: var(--white);
+    border-color: var(--gold);
+    background: rgba(196, 146, 42, .15);
 }
 
 
-/* RESPONSIVO */
+/* ===========================
+   RESPONSIVO
+   =========================== */
 
-@media(max-width:768px) {
-    .hero {
-        padding: 60px 20px;
-    }
+@media (max-width: 768px) {
     .hero h1 {
-        font-size: 2.3rem;
-    }
-    .subtitle {
-        font-size: 1rem;
+        font-size: 2.7rem;
     }
     .logo-container {
-        width: 140px;
-        height: 140px;
+        width: 155px;
+        height: 155px;
     }
     .card {
-        padding: 25px;
+        padding: 32px 28px;
     }
     .section h2 {
-        font-size: 1.8rem;
+        font-size: 1.65rem;
     }
-    .btn-whatsapp {
-        width: 100%;
-        max-width: 320px;
+    .intro-text {
+        padding: 26px 28px;
     }
 }
 
-@media(max-width:480px) {
+@media (max-width: 480px) {
     .hero h1 {
-        font-size: 2rem;
+        font-size: 2.1rem;
+    }
+    .subtitle {
+        font-size: .92rem;
+    }
+    .btn-whatsapp-round {
+        padding: 9px 20px 9px 9px;
+        font-size: .88rem;
+    }
+    .wpp-thumb {
+        width: 44px;
+        height: 44px;
+    }
+    .card {
+        padding: 26px 20px;
     }
     .section h2 {
-        font-size: 1.5rem;
-    }
-    .menu-placeholder {
-        grid-template-columns: 1fr;
+        font-size: 1.45rem;
     }
 }
