@@ -1,6 +1,6 @@
 :root {
     --primary: #305084;
-    --secondary: #8b1e3f;
+    --secondary: #4F8Ef7;
     --background: #f4f6fa;
     --white: #ffffff;
     --text: #333;
@@ -99,12 +99,12 @@ body {
     font-weight: 600;
     font-size: 18px;
     transition: .3s;
-    box-shadow: 0 10px 25px rgba(139, 30, 63, .35);
+    box-shadow: 0 10px 25px rgba(79, 142, 247, .35);
 }
 
 .btn-whatsapp:hover {
     transform: translateY(-5px);
-    background: #6E1832;
+    background: #3A78DE;
 }
 
 
