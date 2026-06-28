@@ -44,7 +44,7 @@
 
             <!-- Links sociais no hero -->
             <div class="hero-social">
-                <a href="https://www.instagram.com/p/DZnpk9mB16z/" target="_blank" class="social-link" aria-label="Instagram">
+                <a href="https://www.instagram.com/nonnaadelia_?igsh=MWhzN2Z5dm91c2t2NA%3D%3D&utm_source=qr" target="_blank" class="social-link" aria-label="Instagram">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
                     </svg> @nonnaadelia_
@@ -70,20 +70,137 @@
         <!-- TEXTO INTRO — coloque seu texto aqui -->
         <section class="intro-text">
             <p>
-                A Nonna Adélia está aqui para mostrar que a pizza de verdade tem História,tem alma e tem uma massa quedescansa o tempo que precissa. Longa fermentação, ingredientes selecionados e muito carinhoem cada fatia.
+                A Nonna Adélia está aqui para mostrar que a pizza de verdade tem História, tem alma e tem uma massa que descansa o tempo que precissa. Longa fermentação, ingredientes selecionados e muito carinhoem cada fatia.
             </p>
         </section>
 
-        <!-- CARDÁPIO -->
+        <!-- CARDÁPIO + PEDIDO -->
         <section class="card section" id="cardapio">
             <span class="section-label">O que tem hoje</span>
             <h2>Cardápio</h2>
-            <p>Cada pizza é montada na hora, com massa de fermentação lenta e molho artesanal. Confira todas as opções no nosso cardápio completo.</p>
+            <p>Massa de fermentação lenta, ingredientes selecionados, montada na hora. Escolha sua pizza abaixo e faça seu pedido direto pelo WhatsApp!</p>
 
-            <a href="assets/cardapio_nonna_adelia_2_paginas.pdf" target="_blank" class="btn-primary">
-                📖 Ver Cardápio Completo
-            </a>
+            <div class="menu-actions">
+                <a href="assets/cardapio_nonna_adelia_2_paginas.pdf" target="_blank" class="btn-primary">
+                    📖 Ver Cardápio PDF
+                </a>
+                <button class="btn-order-toggle" onclick="toggleOrderForm()">
+                    🛒 Montar Pedido
+                </button>
+            </div>
+
+            <!-- FORMULÁRIO DE PEDIDO -->
+            <div class="order-form" id="orderForm">
+
+                <div class="order-step">
+                    <p class="order-step-title">🍕 Escolha sua pizza</p>
+
+                    <p class="order-category-label">— Tradicionais —</p>
+                    <div class="pizza-grid">
+                        <label class="pizza-card"><input type="checkbox" name="pizza" value="Margherita della Nonna (R$ 59,90)"><span class="pizza-name">Margherita della Nonna</span><span class="pizza-price">R$ 59,90</span></label>
+                        <label class="pizza-card"><input type="checkbox" name="pizza" value="Calabresa Artesanal (R$ 59,90)"><span class="pizza-name">Calabresa Artesanal</span><span class="pizza-price">R$ 59,90</span></label>
+                        <label class="pizza-card"><input type="checkbox" name="pizza" value="Napolitana (R$ 59,90)"><span class="pizza-name">Napolitana</span><span class="pizza-price">R$ 59,90</span></label>
+                        <label class="pizza-card"><input type="checkbox" name="pizza" value="Pepperoni (R$ 64,90)"><span class="pizza-name">Pepperoni</span><span class="pizza-price">R$ 64,90</span></label>
+                        <label class="pizza-card"><input type="checkbox" name="pizza" value="Quatro Queijos (R$ 64,90)"><span class="pizza-name">Quatro Queijos</span><span class="pizza-price">R$ 64,90</span></label>
+                    </div>
+
+                    <p class="order-category-label">— Especiais —</p>
+                    <div class="pizza-grid">
+                        <label class="pizza-card highlight"><input type="checkbox" name="pizza" value="Nonna Adélia - Assinatura da Casa (R$ 79,90)"><span class="pizza-name">⭐ Nonna Adélia</span><span class="pizza-price">R$ 79,90</span></label>
+                        <label class="pizza-card"><input type="checkbox" name="pizza" value="Porchetta Italiana (R$ 74,90)"><span class="pizza-name">Porchetta Italiana</span><span class="pizza-price">R$ 74,90</span></label>
+                        <label class="pizza-card"><input type="checkbox" name="pizza" value="Sertão Italiano (R$ 74,90)"><span class="pizza-name">Sertão Italiano</span><span class="pizza-price">R$ 74,90</span></label>
+                        <label class="pizza-card"><input type="checkbox" name="pizza" value="Toscana (R$ 69,90)"><span class="pizza-name">Toscana</span><span class="pizza-price">R$ 69,90</span></label>
+                        <label class="pizza-card"><input type="checkbox" name="pizza" value="Mortadela Defumada & Pistache (R$ 74,90)"><span class="pizza-name">Mortadela & Pistache</span><span class="pizza-price">R$ 74,90</span></label>
+                    </div>
+
+                    <p class="order-category-label">— Premium —</p>
+                    <div class="pizza-grid">
+                        <label class="pizza-card"><input type="checkbox" name="pizza" value="Camarão do Cumbuco (R$ 89,90)"><span class="pizza-name">Camarão do Cumbuco</span><span class="pizza-price">R$ 89,90</span></label>
+                        <label class="pizza-card"><input type="checkbox" name="pizza" value="Jamón Espanhol & Rúcula (R$ 109,90)"><span class="pizza-name">Jamón & Rúcula</span><span class="pizza-price">R$ 109,90</span></label>
+                        <label class="pizza-card"><input type="checkbox" name="pizza" value="Burrata & Pesto (R$ 99,90)"><span class="pizza-name">Burrata & Pesto</span><span class="pizza-price">R$ 99,90</span></label>
+                    </div>
+
+                    <p class="order-category-label">— Doces —</p>
+                    <div class="pizza-grid">
+                        <label class="pizza-card"><input type="checkbox" name="pizza" value="Nutella, Ovomaltine & M&Ms (R$ 74,90)"><span class="pizza-name">Nutella & Ovomaltine</span><span class="pizza-price">R$ 74,90</span></label>
+                        <label class="pizza-card"><input type="checkbox" name="pizza" value="Banoffee (R$ 64,90)"><span class="pizza-name">Banoffee</span><span class="pizza-price">R$ 64,90</span></label>
+                        <label class="pizza-card"><input type="checkbox" name="pizza" value="Tiramisu da Nonna (R$ 69,90)"><span class="pizza-name">Tiramisu da Nonna</span><span class="pizza-price">R$ 69,90</span></label>
+                    </div>
+
+                    <p class="order-category-label">— Trio da Nonna (3 mini pizzas 15cm) —</p>
+                    <div class="pizza-grid">
+                        <label class="pizza-card"><input type="checkbox" name="pizza" value="Trio Tradicional (R$ 69,90)"><span class="pizza-name">Trio Tradicional</span><span class="pizza-price">R$ 69,90</span></label>
+                        <label class="pizza-card"><input type="checkbox" name="pizza" value="Trio Especial (R$ 85,00)"><span class="pizza-name">Trio Especial</span><span class="pizza-price">R$ 85,00</span></label>
+                        <label class="pizza-card"><input type="checkbox" name="pizza" value="Trio Premium (R$ 110,00)"><span class="pizza-name">Trio Premium</span><span class="pizza-price">R$ 110,00</span></label>
+                    </div>
+                </div>
+
+                <div class="order-step">
+                    <p class="order-step-title">🥤 Quer adicionar uma bebida?</p>
+                    <div class="pizza-grid">
+                        <label class="pizza-card"><input type="checkbox" name="bebida" value="Nenhuma bebida"><span class="pizza-name">Sem bebida</span><span class="pizza-price">—</span></label>
+                        <label class="pizza-card"><input type="checkbox" name="bebida" value="Coca-Cola lata (R$ 7,00)"><span class="pizza-name">Coca-Cola lata</span><span class="pizza-price">R$ 7,00</span></label>
+                        <label class="pizza-card"><input type="checkbox" name="bebida" value="Coca-Cola 600ml (R$ 10,00)"><span class="pizza-name">Coca-Cola 600ml</span><span class="pizza-price">R$ 10,00</span></label>
+                        <label class="pizza-card"><input type="checkbox" name="bebida" value="Coca-Cola 2L (R$ 16,00)"><span class="pizza-name">Coca-Cola 2L</span><span class="pizza-price">R$ 16,00</span></label>
+                        <label class="pizza-card"><input type="checkbox" name="bebida" value="Guaraná lata (R$ 7,00)"><span class="pizza-name">Guaraná lata</span><span class="pizza-price">R$ 7,00</span></label>
+                        <label class="pizza-card"><input type="checkbox" name="bebida" value="Água sem gás (R$ 5,00)"><span class="pizza-name">Água sem gás</span><span class="pizza-price">R$ 5,00</span></label>
+                        <label class="pizza-card"><input type="checkbox" name="bebida" value="Suco de laranja natural (R$ 12,00)"><span class="pizza-name">Suco de laranja</span><span class="pizza-price">R$ 12,00</span></label>
+                    </div>
+                    <p class="order-drinks-note">⚠️ Preços das bebidas são ilustrativos — atualize com seus valores reais no HTML.</p>
+                </div>
+
+                <div class="order-step">
+                    <p class="order-step-title">📝 Alguma observação?</p>
+                    <textarea id="obs" class="order-obs" placeholder="Ex: sem cebola, borda recheada, endereço para entrega..."></textarea>
+                </div>
+
+                <button class="btn-send-order" onclick="enviarPedido()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
+                    Enviar Pedido pelo WhatsApp
+                </button>
+
+            </div>
+            <!-- fim order-form -->
         </section>
+
+        <script>
+            function toggleOrderForm() {
+                const form = document.getElementById('orderForm');
+                const btn = document.querySelector('.btn-order-toggle');
+                const open = form.classList.toggle('open');
+                btn.textContent = open ? '✕ Fechar' : '🛒 Montar Pedido';
+                if (open) form.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+
+            function enviarPedido() {
+                const pizza = document.querySelector('input[name="pizza"]:checked');
+                const bebida = document.querySelector('input[name="bebida"]:checked');
+                const obs = document.getElementById('obs').value.trim();
+
+                if (!pizza) {
+                    alert('Por favor, escolha uma pizza! 🍕');
+                    return;
+                }
+                if (!bebida) {
+                    alert('Por favor, escolha uma bebida (ou "Sem bebida")! 🥤');
+                    return;
+                }
+
+                let msg = 'Olá, Nonna Adélia! Quero fazer um pedido:\n\n';
+                msg += `Pizza: ${pizza.value}\n`;
+                msg += `Bebida: ${bebida.value}\n`;
+                if (obs) msg += `Observações: ${obs}\n`;
+                msg += '\nAguardo confirmação!';
+
+                const url = `https://api.whatsapp.com/send/?phone=5585984080685&text=${encodeURIComponent(msg)}&type=phone_number&app_absent=0`;
+                window.open(url, '_blank');
+            }
+        </script>
 
         <!-- NOSSA HISTÓRIA -->
         <section class="card section history-card" id="historia">
@@ -101,7 +218,7 @@
             <span class="section-label">O que dizem de nós</span>
             <h2>Avaliações</h2>
             <p>Veja o que nossos clientes estão falando no Google.</p>
-            <a href="https://share.google/JEFbFXZSkjtp3jFgB" target="_blank" class="btn-google">
+            <a href="https://share.google/j3zHhznZemRpK42bm" target="_blank" class="btn-google">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                 </svg> Ver Avaliações no Google
@@ -143,7 +260,7 @@
     <!-- RODAPÉ -->
     <footer>
         <div class="footer-social">
-            <a href="https://www.instagram.com/p/DZnpk9mB16z/" target="_blank" aria-label="Instagram">
+            <a href="https://www.instagram.com/nonnaadelia_?igsh=MWhzN2Z5dm91c2t2NA%3D%3D&utm_source=qr" target="_blank" aria-label="Instagram">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
                 </svg>
