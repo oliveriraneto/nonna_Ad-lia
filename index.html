@@ -146,7 +146,7 @@
                         <label class="pizza-card"><input type="checkbox" name="bebida" value="Água sem gás (R$ 5,00)"><span class="pizza-name">Água sem gás</span><span class="pizza-price">R$ 5,00</span></label>
                         <label class="pizza-card"><input type="checkbox" name="bebida" value="Suco de laranja natural (R$ 12,00)"><span class="pizza-name">Suco de laranja</span><span class="pizza-price">R$ 12,00</span></label>
                     </div>
-                    <p class="order-drinks-note">⚠️ Preços das bebidas são ilustrativos — atualize com seus valores reais no HTML.</p>
+                    <p id="totalPedido" style="text-align:center; font-weight:700; font-size:1.1rem; color:var(--blue); margin-bottom:12px; min-height:1.5em;"></p>
                 </div>
 
                 <div class="order-step">
@@ -170,32 +170,59 @@
                 const form = document.getElementById('orderForm');
                 const btn = document.querySelector('.btn-order-toggle');
                 const open = form.classList.toggle('open');
-                btn.textContent = open ? '✕ Fechar' : '🛒 Montar Pedido';
+                btn.textContent = open ? 'Fechar' : 'Montar Pedido';
                 if (open) form.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
             }
 
+            function extrairPreco(valor) {
+                const match = valor.match(/R\$\s*([\d.,]+)/);
+                if (!match) return 0;
+                return parseFloat(match[1].replace('.', '').replace(',', '.'));
+            }
+
+            function calcularTotal() {
+                const itens = [...document.querySelectorAll('input[name="pizza"]:checked, input[name="bebida"]:checked')];
+                return itens.reduce((soma, i) => soma + extrairPreco(i.value), 0);
+            }
+
+            document.addEventListener('change', function(e) {
+                if (e.target.name === 'pizza' || e.target.name === 'bebida') {
+                    const total = calcularTotal();
+                    const el = document.getElementById('totalPedido');
+                    if (el) el.textContent = total > 0 ?
+                        'Total estimado: R$ ' + total.toFixed(2).replace('.', ',') :
+                        '';
+                }
+            });
+
             function enviarPedido() {
-                const pizza = document.querySelector('input[name="pizza"]:checked');
-                const bebida = document.querySelector('input[name="bebida"]:checked');
+                const pizzas = [...document.querySelectorAll('input[name="pizza"]:checked')].map(i => '  - ' + i.value);
+                const bebidas = [...document.querySelectorAll('input[name="bebida"]:checked')].map(i => '  - ' + i.value);
                 const obs = document.getElementById('obs').value.trim();
+                const total = calcularTotal();
 
-                if (!pizza) {
-                    alert('Por favor, escolha uma pizza! 🍕');
-                    return;
-                }
-                if (!bebida) {
-                    alert('Por favor, escolha uma bebida (ou "Sem bebida")! 🥤');
+                if (pizzas.length === 0) {
+                    alert('Por favor, escolha ao menos uma pizza.');
                     return;
                 }
 
-                let msg = 'Olá, Nonna Adélia! Quero fazer um pedido:\n\n';
-                msg += `Pizza: ${pizza.value}\n`;
-                msg += `Bebida: ${bebida.value}\n`;
-                if (obs) msg += `Observações: ${obs}\n`;
-                msg += '\nAguardo confirmação!';
+                let msg = 'Ola, Nonna Adelia! Quero fazer um pedido:\n\n';
+
+                msg += `${pizzas.length > 1 ? 'Pizzas' : 'Pizza'}:\n${pizzas.join('\n')}\n\n`;
+
+                if (bebidas.length > 0) {
+                    msg += `${bebidas.length > 1 ? 'Bebidas' : 'Bebida'}:\n${bebidas.join('\n')}\n\n`;
+                } else {
+                    msg += 'Bebida: Sem bebida\n\n';
+                }
+
+                if (obs) msg += `Observacoes: ${obs}\n\n`;
+
+                msg += `Total estimado: R$ ${total.toFixed(2).replace('.', ',')}\n\n`;
+                msg += 'Aguardo confirmacao!';
 
                 const url = `https://api.whatsapp.com/send/?phone=5585984080685&text=${encodeURIComponent(msg)}&type=phone_number&app_absent=0`;
                 window.open(url, '_blank');
