@@ -70,7 +70,7 @@
         <!-- TEXTO INTRO — coloque seu texto aqui -->
         <section class="intro-text">
             <p>
-                A Nonna Adélia está aqui para mostrar que a pizza de verdade tem História, tem alma e tem uma massa que descansa o tempo que precissa. Longa fermentação, ingredientes selecionados e muito carinhoem cada fatia.
+                A Nonna Adélia está aqui para mostrar que a pizza de verdade tem História,tem alma e tem uma massa quedescansa o tempo que precissa. Longa fermentação, ingredientes selecionados e muito carinhoem cada fatia.
             </p>
         </section>
 
@@ -93,7 +93,7 @@
             <div class="order-form" id="orderForm">
 
                 <div class="order-step">
-                    <p class="order-step-title">🍕 Escolha sua pizza</p>
+                    <p class="order-step-title">🍕 Escolha sua(s) pizza(s) <span class="order-hint">— pode marcar mais de uma</span></p>
 
                     <p class="order-category-label">— Tradicionais —</p>
                     <div class="pizza-grid">
@@ -136,9 +136,8 @@
                 </div>
 
                 <div class="order-step">
-                    <p class="order-step-title">🥤 Quer adicionar uma bebida?</p>
+                    <p class="order-step-title">🥤 Bebidas <span class="order-hint">— pode marcar mais de uma</span></p>
                     <div class="pizza-grid">
-                        <label class="pizza-card"><input type="checkbox" name="bebida" value="Nenhuma bebida"><span class="pizza-name">Sem bebida</span><span class="pizza-price">—</span></label>
                         <label class="pizza-card"><input type="checkbox" name="bebida" value="Coca-Cola lata (R$ 7,00)"><span class="pizza-name">Coca-Cola lata</span><span class="pizza-price">R$ 7,00</span></label>
                         <label class="pizza-card"><input type="checkbox" name="bebida" value="Coca-Cola 600ml (R$ 10,00)"><span class="pizza-name">Coca-Cola 600ml</span><span class="pizza-price">R$ 10,00</span></label>
                         <label class="pizza-card"><input type="checkbox" name="bebida" value="Coca-Cola 2L (R$ 16,00)"><span class="pizza-name">Coca-Cola 2L</span><span class="pizza-price">R$ 16,00</span></label>
@@ -146,26 +145,371 @@
                         <label class="pizza-card"><input type="checkbox" name="bebida" value="Água sem gás (R$ 5,00)"><span class="pizza-name">Água sem gás</span><span class="pizza-price">R$ 5,00</span></label>
                         <label class="pizza-card"><input type="checkbox" name="bebida" value="Suco de laranja natural (R$ 12,00)"><span class="pizza-name">Suco de laranja</span><span class="pizza-price">R$ 12,00</span></label>
                     </div>
-                    <p id="totalPedido" style="text-align:center; font-weight:700; font-size:1.1rem; color:var(--blue); margin-bottom:12px; min-height:1.5em;"></p>
+                    <p class="order-drinks-note"></p>
                 </div>
 
+                <!-- ENTREGA -->
                 <div class="order-step">
-                    <p class="order-step-title">📝 Alguma observação?</p>
-                    <textarea id="obs" class="order-obs" placeholder="Ex: sem cebola, borda recheada, endereço para entrega..."></textarea>
+                    <p class="order-step-title">Entrega ou Retirada?</p>
+                    <div class="delivery-toggle">
+                        <label class="delivery-opt">
+                            <input type="radio" name="entrega" value="retirada" onchange="onEntregaChange()" checked>
+                            <span>Retirar no local</span>
+                        </label>
+                        <label class="delivery-opt">
+                            <input type="radio" name="entrega" value="entrega" onchange="onEntregaChange()">
+                            <span>Receber em casa</span>
+                        </label>
+                    </div>
+
+                    <div id="enderecoBlock" style="display:none; margin-top:16px;">
+                        <p class="order-step-title" style="font-size:.9rem; margin-bottom:8px !important;">Digite seu CEP</p>
+                        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                            <input type="text" id="cepInput" maxlength="9" placeholder="00000-000" class="order-obs" style="min-height:unset; height:48px; width:150px; resize:none; letter-spacing:.05em;" oninput="mascaraCep(this)" onblur="buscarCep()">
+                            <button type="button" class="btn-cep" onclick="buscarCep()">Calcular frete</button>
+                        </div>
+                        <div id="cepLoading" style="display:none; margin-top:10px; font-size:.85rem; color:var(--muted);">Calculando...</div>
+                        <div id="cepErro" style="display:none; margin-top:10px; font-size:.85rem; color:#c0392b;"></div>
+                        <div id="freteInfo" class="frete-info" style="display:none; margin-top:10px;">
+                            <div id="cepEndereco" style="font-size:.78rem; color:var(--muted); margin-bottom:4px;"></div>
+                            <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
+                                <span id="freteDistancia"></span>
+                                <span id="freteTempo"></span>
+                                <span id="freteValor"></span>
+                            </div>
+                        </div>
+                        <p style="font-size:.75rem; color:var(--muted); margin-top:8px;">
+                            Entregamos em ate 15 km da pizzaria.
+                        </p>
+                    </div>
                 </div>
 
-                <button class="btn-send-order" onclick="enviarPedido()">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                    </svg>
-                    Enviar Pedido pelo WhatsApp
-                </button>
+                <!-- OBSERVAÇÕES -->
+                <div class="order-step">
+                    <p class="order-step-title">Observacoes</p>
+                    <textarea id="obs" class="order-obs" placeholder="Ex: sem cebola, borda recheada, ponto de referencia..."></textarea>
+                </div>
+
+                <!-- RESUMO DO PEDIDO -->
+                <div class="order-summary" id="orderSummary" style="display:none;">
+                    <div class="summary-row"><span>Subtotal</span><span id="sumSubtotal">R$ 0,00</span></div>
+                    <div class="summary-row" id="sumFreteRow" style="display:none;"><span>Taxa de entrega</span><span id="sumFrete">R$ 0,00</span></div>
+                    <div class="summary-row total"><span>Total</span><span id="sumTotal">R$ 0,00</span></div>
+                </div>
+
+                <!-- BOTÕES DE PAGAMENTO -->
+                <div class="payment-btns">
+                    <button class="btn-pay btn-pay-wpp" onclick="enviarWhatsapp()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                        Pedir pelo WhatsApp
+                    </button>
+                    <button class="btn-pay btn-pay-mp" onclick="pagarMercadoPago()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                        Pagar pelo Site
+                    </button>
+                </div>
 
             </div>
             <!-- fim order-form -->
         </section>
 
         <script>
+            // ── Pizzaria — coordenadas fixas ─────────────────────────────
+            const PIZZARIA_LAT = -3.7299; // Caucaia-CE, Trav. Pedro Gomes da Rocha 24
+            const PIZZARIA_LNG = -38.6530;
+
+            // ── Tabela de frete (da tabela do cliente) ───────────────────
+            const FRETE = [{
+                km: 0.5,
+                min: 27,
+                taxa: 4.99
+            }, {
+                km: 1,
+                min: 30,
+                taxa: 4.99
+            }, {
+                km: 1.5,
+                min: 32,
+                taxa: 6.99
+            }, {
+                km: 2,
+                min: 33,
+                taxa: 6.99
+            }, {
+                km: 2.5,
+                min: 35,
+                taxa: 7.99
+            }, {
+                km: 3,
+                min: 36,
+                taxa: 7.99
+            }, {
+                km: 3.5,
+                min: 36,
+                taxa: 8.99
+            }, {
+                km: 4,
+                min: 37,
+                taxa: 8.99
+            }, {
+                km: 4.5,
+                min: 38,
+                taxa: 10.99
+            }, {
+                km: 5,
+                min: 39,
+                taxa: 10.99
+            }, {
+                km: 5.5,
+                min: 40,
+                taxa: 11.99
+            }, {
+                km: 6,
+                min: 42,
+                taxa: 12.99
+            }, {
+                km: 6.5,
+                min: 43,
+                taxa: 13.99
+            }, {
+                km: 7,
+                min: 44,
+                taxa: 14.99
+            }, {
+                km: 7.5,
+                min: 45,
+                taxa: 15.99
+            }, {
+                km: 8,
+                min: 46,
+                taxa: 16.99
+            }, {
+                km: 8.5,
+                min: 47,
+                taxa: 16.99
+            }, {
+                km: 9,
+                min: 48,
+                taxa: 17.99
+            }, {
+                km: 9.5,
+                min: 49,
+                taxa: 18.99
+            }, {
+                km: 10,
+                min: 51,
+                taxa: 18.99
+            }, {
+                km: 10.5,
+                min: 52,
+                taxa: 19.99
+            }, {
+                km: 11,
+                min: 53,
+                taxa: 19.99
+            }, {
+                km: 11.5,
+                min: 55,
+                taxa: 20.99
+            }, {
+                km: 12,
+                min: 56,
+                taxa: 22.99
+            }, {
+                km: 12.5,
+                min: 57,
+                taxa: 22.99
+            }, {
+                km: 13,
+                min: 59,
+                taxa: 24.99
+            }, {
+                km: 13.5,
+                min: 60,
+                taxa: 24.99
+            }, {
+                km: 14,
+                min: 62,
+                taxa: 24.99
+            }, {
+                km: 14.5,
+                min: 63,
+                taxa: 24.99
+            }, {
+                km: 15,
+                min: 64,
+                taxa: 24.99
+            }, ];
+
+            // ── Estado do frete ──────────────────────────────────────────
+            let freteAtualTaxa = 0;
+            let freteAtualMin = 0;
+            let freteAtualKm = 0;
+            let enderecoCliente = '';
+
+            // ── Utilitários ──────────────────────────────────────────────
+            function fmt(v) {
+                return 'R$ ' + v.toFixed(2).replace('.', ',');
+            }
+
+            function extrairPreco(valor) {
+                const m = valor.match(/R\$\s*([\d.,]+)/);
+                if (!m) return 0;
+                return parseFloat(m[1].replace('.', '').replace(',', '.'));
+            }
+
+            function calcularSubtotal() {
+                return [...document.querySelectorAll('input[name="pizza"]:checked, input[name="bebida"]:checked')]
+                    .reduce((s, i) => s + extrairPreco(i.value), 0);
+            }
+
+            function getFrete(km) {
+                const arred = Math.ceil(km * 2) / 2;
+                if (arred > 15) return null;
+                return FRETE.find(r => r.km === arred) || FRETE[FRETE.length - 1];
+            }
+
+            // Haversine — distância em linha reta entre duas coordenadas
+            function haversine(lat1, lng1, lat2, lng2) {
+                const R = 6371;
+                const dLat = (lat2 - lat1) * Math.PI / 180;
+                const dLng = (lng2 - lng1) * Math.PI / 180;
+                const a = Math.sin(dLat / 2) ** 2 +
+                    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLng / 2) ** 2;
+                return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            }
+
+            // ── Máscara CEP ──────────────────────────────────────────────
+            function mascaraCep(el) {
+                let v = el.value.replace(/\D/g, '').slice(0, 8);
+                if (v.length > 5) v = v.slice(0, 5) + '-' + v.slice(5);
+                el.value = v;
+                // limpa resultado anterior ao digitar
+                document.getElementById('freteInfo').style.display = 'none';
+                document.getElementById('cepErro').style.display = 'none';
+                freteAtualTaxa = 0;
+                atualizarResumo();
+            }
+
+            // ── Busca CEP via ViaCEP (gratuito, sem chave) ───────────────
+            async function buscarCep() {
+                const cep = document.getElementById('cepInput').value.replace(/\D/g, '');
+                if (cep.length !== 8) return;
+
+                const loading = document.getElementById('cepLoading');
+                const erro = document.getElementById('cepErro');
+                const info = document.getElementById('freteInfo');
+
+                loading.style.display = 'block';
+                erro.style.display = 'none';
+                info.style.display = 'none';
+                freteAtualTaxa = 0;
+
+                try {
+                    // 1. Busca dados do CEP
+                    const res = await fetch('https://viacep.com.br/ws/' + cep + '/json/');
+                    const data = await res.json();
+
+                    if (data.erro) {
+                        throw new Error('CEP nao encontrado.');
+                    }
+
+                    const endFormatado = data.logradouro ?
+                        data.logradouro + ', ' + data.bairro + ' - ' + data.localidade + '/' + data.uf :
+                        data.bairro + ' - ' + data.localidade + '/' + data.uf;
+
+                    enderecoCliente = endFormatado;
+
+                    // 2. Geocodifica o endereço via Nominatim (OpenStreetMap, gratuito)
+                    const query = encodeURIComponent(endFormatado + ', Brasil');
+                    const geoRes = await fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + query, {
+                        headers: {
+                            'Accept-Language': 'pt-BR'
+                        }
+                    });
+                    const geoData = await geoRes.json();
+
+                    if (!geoData.length) {
+                        throw new Error('Nao foi possivel localizar o endereco. Tente novamente.');
+                    }
+
+                    const clienteLat = parseFloat(geoData[0].lat);
+                    const clienteLng = parseFloat(geoData[0].lon);
+
+                    // 3. Calcula distância em linha reta e aplica fator de rota (~1.3x)
+                    const distReta = haversine(PIZZARIA_LAT, PIZZARIA_LNG, clienteLat, clienteLng);
+                    const distRota = distReta * 1.3;
+                    freteAtualKm = distRota;
+
+                    const row = getFrete(distRota);
+
+                    loading.style.display = 'none';
+
+                    if (!row) {
+                        erro.style.display = 'block';
+                        erro.textContent = 'Endereco fora da area de entrega (' + distRota.toFixed(1) + ' km). Entregamos ate 15 km.';
+                        freteAtualTaxa = 0;
+                        atualizarResumo();
+                        return;
+                    }
+
+                    freteAtualTaxa = row.taxa;
+                    freteAtualMin = row.min;
+
+                    document.getElementById('cepEndereco').textContent = endFormatado;
+                    document.getElementById('freteDistancia').textContent = distRota.toFixed(1) + ' km';
+                    document.getElementById('freteTempo').textContent = row.min + ' min';
+                    document.getElementById('freteValor').textContent = fmt(row.taxa);
+                    info.style.display = 'block';
+
+                    atualizarResumo();
+
+                } catch (e) {
+                    loading.style.display = 'none';
+                    erro.style.display = 'block';
+                    erro.textContent = e.message || 'Erro ao calcular frete. Tente novamente.';
+                    freteAtualTaxa = 0;
+                    atualizarResumo();
+                }
+            }
+
+            // ── Entrega / Retirada ───────────────────────────────────────
+            function onEntregaChange() {
+                const entrega = document.querySelector('input[name="entrega"]:checked').value === 'entrega';
+                document.getElementById('enderecoBlock').style.display = entrega ? 'block' : 'none';
+                if (!entrega) {
+                    document.getElementById('freteInfo').style.display = 'none';
+                    document.getElementById('cepErro').style.display = 'none';
+                    document.getElementById('cepInput').value = '';
+                    freteAtualTaxa = 0;
+                }
+                atualizarResumo();
+            }
+
+            function getFreteAtual() {
+                const entrega = document.querySelector('input[name="entrega"]:checked').value === 'entrega';
+                return entrega ? freteAtualTaxa : 0;
+            }
+
+            // ── Resumo ───────────────────────────────────────────────────
+            function atualizarResumo() {
+                const sub = calcularSubtotal();
+                const frete = getFreteAtual();
+                const total = sub + frete;
+                const entrega = document.querySelector('input[name="entrega"]:checked').value === 'entrega';
+
+                document.getElementById('orderSummary').style.display = sub > 0 ? 'block' : 'none';
+                document.getElementById('sumSubtotal').textContent = fmt(sub);
+                document.getElementById('sumFreteRow').style.display = entrega ? 'flex' : 'none';
+                document.getElementById('sumFrete').textContent = fmt(frete);
+                document.getElementById('sumTotal').textContent = fmt(total);
+            }
+
+            document.addEventListener('change', function(e) {
+                if (e.target.name === 'pizza' || e.target.name === 'bebida') atualizarResumo();
+            });
+
+            // ── Form toggle ──────────────────────────────────────────────
             function toggleOrderForm() {
                 const form = document.getElementById('orderForm');
                 const btn = document.querySelector('.btn-order-toggle');
@@ -177,55 +521,74 @@
                 });
             }
 
-            function extrairPreco(valor) {
-                const match = valor.match(/R\$\s*([\d.,]+)/);
-                if (!match) return 0;
-                return parseFloat(match[1].replace('.', '').replace(',', '.'));
-            }
-
-            function calcularTotal() {
-                const itens = [...document.querySelectorAll('input[name="pizza"]:checked, input[name="bebida"]:checked')];
-                return itens.reduce((soma, i) => soma + extrairPreco(i.value), 0);
-            }
-
-            document.addEventListener('change', function(e) {
-                if (e.target.name === 'pizza' || e.target.name === 'bebida') {
-                    const total = calcularTotal();
-                    const el = document.getElementById('totalPedido');
-                    if (el) el.textContent = total > 0 ?
-                        'Total estimado: R$ ' + total.toFixed(2).replace('.', ',') :
-                        '';
+            // ── Validacao ────────────────────────────────────────────────
+            function validar() {
+                const pizzas = document.querySelectorAll('input[name="pizza"]:checked');
+                if (pizzas.length === 0) {
+                    alert('Escolha ao menos uma pizza.');
+                    return false;
                 }
-            });
+                const entrega = document.querySelector('input[name="entrega"]:checked').value === 'entrega';
+                if (entrega) {
+                    const cep = document.getElementById('cepInput').value.replace(/\D/g, '');
+                    if (cep.length !== 8) {
+                        alert('Digite um CEP valido para calcular o frete.');
+                        return false;
+                    }
+                    if (freteAtualTaxa === 0 && document.getElementById('freteInfo').style.display === 'none') {
+                        alert('Clique em "Calcular frete" antes de finalizar.');
+                        return false;
+                    }
+                    if (freteAtualKm > 15) {
+                        alert('Desculpe, nao entregamos alem de 15 km.');
+                        return false;
+                    }
+                }
+                return true;
+            }
 
-            function enviarPedido() {
+            // ── Mensagem ─────────────────────────────────────────────────
+            function montarMensagem() {
                 const pizzas = [...document.querySelectorAll('input[name="pizza"]:checked')].map(i => '  - ' + i.value);
                 const bebidas = [...document.querySelectorAll('input[name="bebida"]:checked')].map(i => '  - ' + i.value);
                 const obs = document.getElementById('obs').value.trim();
-                const total = calcularTotal();
-
-                if (pizzas.length === 0) {
-                    alert('Por favor, escolha ao menos uma pizza.');
-                    return;
-                }
+                const entrega = document.querySelector('input[name="entrega"]:checked').value === 'entrega';
+                const sub = calcularSubtotal();
+                const frete = getFreteAtual();
+                const total = sub + frete;
 
                 let msg = 'Ola, Nonna Adelia! Quero fazer um pedido:\n\n';
-
-                msg += `${pizzas.length > 1 ? 'Pizzas' : 'Pizza'}:\n${pizzas.join('\n')}\n\n`;
-
-                if (bebidas.length > 0) {
-                    msg += `${bebidas.length > 1 ? 'Bebidas' : 'Bebida'}:\n${bebidas.join('\n')}\n\n`;
+                msg += (pizzas.length > 1 ? 'Pizzas' : 'Pizza') + ':\n' + pizzas.join('\n') + '\n\n';
+                if (bebidas.length > 0) msg += (bebidas.length > 1 ? 'Bebidas' : 'Bebida') + ':\n' + bebidas.join('\n') + '\n\n';
+                else msg += 'Bebida: Sem bebida\n\n';
+                if (entrega) {
+                    msg += 'Modalidade: Entrega\n';
+                    msg += 'Endereco: ' + enderecoCliente + '\n';
+                    msg += 'Distancia: ' + freteAtualKm.toFixed(1) + ' km\n';
+                    msg += 'Previsao: ' + freteAtualMin + ' min\n';
+                    msg += 'Taxa de entrega: ' + fmt(frete) + '\n';
                 } else {
-                    msg += 'Bebida: Sem bebida\n\n';
+                    msg += 'Modalidade: Retirada no local\n';
                 }
+                if (obs) msg += 'Observacoes: ' + obs + '\n';
+                msg += '\nSubtotal: ' + fmt(sub);
+                if (entrega) msg += '\nFrete: ' + fmt(frete);
+                msg += '\nTotal: ' + fmt(total);
+                msg += '\n\nAguardo confirmacao!';
+                return msg;
+            }
 
-                if (obs) msg += `Observacoes: ${obs}\n\n`;
-
-                msg += `Total estimado: R$ ${total.toFixed(2).replace('.', ',')}\n\n`;
-                msg += 'Aguardo confirmacao!';
-
-                const url = `https://api.whatsapp.com/send/?phone=5585984080685&text=${encodeURIComponent(msg)}&type=phone_number&app_absent=0`;
+            function enviarWhatsapp() {
+                if (!validar()) return;
+                const url = 'https://api.whatsapp.com/send/?phone=5585984080685&text=' + encodeURIComponent(montarMensagem()) + '&type=phone_number&app_absent=0';
                 window.open(url, '_blank');
+            }
+
+            function pagarMercadoPago() {
+                if (!validar()) return;
+                const url = 'https://api.whatsapp.com/send/?phone=5585984080685&text=' + encodeURIComponent('[PAGAMENTO ONLINE]\n\n' + montarMensagem()) + '&type=phone_number&app_absent=0';
+                window.open(url, '_blank');
+                setTimeout(() => window.open('https://link.mercadopago.com.br/nonnadeliapizza', '_blank'), 800);
             }
         </script>
 
