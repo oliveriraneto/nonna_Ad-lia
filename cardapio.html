@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio — Nonna Adélia</title>
+    <meta name="description" content="Cardápio completo da Nonna Adélia Pizzaria Artesanal.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"> li
+    <link rel="stylesheet" href="cardapio.css">
+</head>
+
+<body>
+
+    <header class="menu-header">
+        <img src="assets/logo.jpeg" alt="Logo Nonna Adélia" class="menu-header-logo">
+        <h1>Cardápio</h1>
+        <p>Massa artesanal de longa fermentação natural. Ingredientes selecionados com amor e tradição.</p>
+        <a href="index.html" class="btn-back">
+            ← Voltar ao início
+        </a>
+    </header>
+
+    <div class="header-divider">
+        <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M0,30 C480,55 960,5 1440,30 L1440,50 L0,50 Z" fill="#e8e8e5"/>
+        </svg>
+    </div>
+
+    <main class="container">
+
+        <!-- TRADICIONAIS -->
+        <div class="category">
+            <div class="category-header">
+                <span class="category-icon">🍕</span>
+                <h2 class="category-title">Pizzas Tradicionais</h2>
+            </div>
+            <div class="pizza-list">
+
+                <div class="pizza-item">
+                    <div class="pizza-item-top">
+                        <span class="pizza-item-name">Margherita della Nonna</span>
+                    </div>
+                    <p class="pizza-item-desc">Molho de tomate italiano, mozzarella de búfala especial, tomates frescos, manjericão e azeite extravirgem sobre massa artesanal de fermentação lenta feita com farinha italiana tipo 00.</p>
+                    <span class="pizza-item-price">R$ 59,90</span>
+                </div>
+
+                <div class="pizza-item">
+                    <div class="pizza-item-top">
+                        <span class="pizza-item-name">Calabresa Artesanal</span>
+                    </div>
+                    <p class="pizza-item-desc">Molho de tomate italiano, mozzarella de búfala especial, calabresa artesanal selecionada, cebola roxa e orégano.</p>
+                    <span class="pizza-item-price">R$ 59,90</span>
+                </div>
+
+                <div class="pizza-item">
+                    <div class="pizza-item-top">
+                        <span class="pizza-item-name">Napolitana</span>
+                    </div>
+                    <p class="pizza-item-desc">Inspirada nas pizzarias tradicionais de Nápoles. Molho de tomate italiano, mozzarella de búfala, tomates frescos, alho confitado, parmesão e manjericão fresco.</p>
+                    <span class="pizza-item-price">R$ 59,90</span>
+                </div>
+
+                <div class="pizza-item">
+                    <div class="pizza-item-top">
+                        <span class="pizza-item-name">Pepperoni</span>
+                    </div>
+                    <p class="pizza-item-desc">Molho de tomate italiano, mozzarella de búfala especial e generosas fatias de pepperoni levemente picante, assadas até a perfeição.</p>
+                    <span class="pizza-item-price">R$ 64,90</span>
+                </div>
+
+                <div class="pizza-item">
+                    <div class="pizza-item-top">
+                        <span class="pizza-item-name">Quatro Queijos</span>
+                    </div>
+                    <p class="pizza-item-desc">Uma combinação cremosa e intensa de mozzarella de búfala, provolone, parmesão e gorgonzola sobre molho de tomate italiano.</p>
+                    <span class="pizza-item-price">R$ 64,90</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ESPECIAIS -->
+        <div class="category">
+            <div class="category-header">
+                <span class="category-icon">⭐</span>
+                <h2 class="category-title">Pizzas Especiais</h2>
+            </div>
+            <div class="pizza-list">
+
+                <div class="pizza-item destaque">
+                    <div class="pizza-item-top">
+                        <span class="pizza-item-name">Nonna Adélia</span>
+                        <span class="pizza-item-badge">Assinatura</span>
+                    </div>
+                    <p class="pizza-item-desc">A pizza assinatura da casa. Porchetta artesanal, queijo coalho, cebola caramelizada e geleia de pimenta sobre uma base de molho italiano e mozzarella de búfala especial.</p>
+                    <span class="pizza-item-price">R$ 79,90</span>
+                </div>
+
+                <div class="pizza-item">
+                    <div class="pizza-item-top">
+                        <span class="pizza-item-name">Porchetta Italiana</span>
+                    </div>
+                    <p class="pizza-item-desc">Inspirada em uma das receitas mais tradicionais da Itália. Molho de tomate italiano, mozzarella de búfala especial, porchetta artesanal e alecrim fresco.</p>
+                    <span class="pizza-item-price">R$ 74,90</span>
+                </div>
+
+                <div class="pizza-item">
+                    <div class="pizza-item-top">
+                        <span class="pizza-item-name">Sertão Italiano</span>
+                    </div>
+                    <p class="pizza-item-desc">O encontro perfeito entre Itália e Nordeste. Carne de sol selecionada, queijo coalho, cebola roxa e mozzarella de búfala sobre molho de tomate italiano.</p>
+                    <span class="pizza-item-price">R$ 74,90</span>
+                </div>
+
+                <div class="pizza-item">
+                    <div class="pizza-item-top">
+                        <span class="pizza-item-name">Toscana</span>
+                    </div>
+                    <p class="pizza-item-desc">Uma combinação clássica inspirada na região da Toscana. Molho de tomate italiano, mozzarella de búfala especial, linguiça artesanal toscana, cebola roxa e orégano.</p>
+                    <span class="pizza-item-price">R$ 69,90</span>
+                </div>
+
+                <div class="pizza-item">
+                    <div class="pizza-item-top">
+                        <span class="pizza-item-name">Mortadela Defumada & Pistache</span>
+                    </div>
+                    <p class="pizza-item-desc">Mortadela defumada premium, mozzarella de búfala especial, parmesão e pistache crocante sobre molho de tomate italiano. Uma pizza sofisticada e cheia de personalidade.</p>
+                    <span class="pizza-item-price">R$ 74,90</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- PREMIUM -->
+        <div class="category">
+            <div class="category-header">
+                <span class="category-icon">👑</span>
+                <h2 class="category-title">Pizzas Premium</h2>
+            </div>
+            <div class="pizza-list">
+
+                <div class="pizza-item">
+                    <div class="pizza-item-top">
+                        <span class="pizza-item-name">Camarão do Cumbuco</span>
+                    </div>
+                    <p class="pizza-item-desc">Uma homenagem ao litoral cearense. Camarões selecionados, mozzarella de búfala especial, alho confitado e parmesão sobre molho de tomate italiano.</p>
+                    <span class="pizza-item-price">R$ 89,90</span>
+                </div>
+
+                <div class="pizza-item">
+                    <div class="pizza-item-top">
+                        <span class="pizza-item-name">Jamón Espanhol & Rúcula</span>
+                    </div>
+                    <p class="pizza-item-desc">Uma combinação elegante e sofisticada. Jamón espanhol fatiado, rúcula fresca, parmesão e mozzarella de búfala sobre molho de tomate italiano.</p>
+                    <span class="pizza-item-price">R$ 109,90</span>
+                </div>
+
+                <div class="pizza-item">
+                    <div class="pizza-item-top">
+                        <span class="pizza-item-name">Burrata & Pesto</span>
+                    </div>
+                    <p class="pizza-item-desc">Uma das receitas mais refinadas da casa. Burrata fresca, tomates cereja e pesto de manjericão preparados sobre massa artesanal de fermentação lenta e molho de tomate italiano.</p>
+                    <span class="pizza-item-price">R$ 99,90</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- DOCES -->
+        <div class="category">
+            <div class="category-header">
+                <span class="category-icon">🍫</span>
+                <h2 class="category-title">Pizzas Doces</h2>
+            </div>
+            <div class="pizza-list">
+
+                <div class="pizza-item">
+                    <div class="pizza-item-top">
+                        <span class="pizza-item-name">Nutella, Ovomaltine & M&M's</span>
+                    </div>
+                    <p class="pizza-item-desc">Uma explosão de sabor e textura. Nutella cremosa, Ovomaltine crocante e M&M's coloridos sobre massa artesanal assada na hora.</p>
+                    <span class="pizza-item-price">R$ 74,90</span>
+                </div>
+
+                <div class="pizza-item">
+                    <div class="pizza-item-top">
+                        <span class="pizza-item-name">Banoffee</span>
+                    </div>
+                    <p class="pizza-item-desc">Doce de leite cremoso, bananas selecionadas e um toque de canela que transformam essa pizza em uma sobremesa irresistível.</p>
+                    <span class="pizza-item-price">R$ 64,90</span>
+                </div>
+
+                <div class="pizza-item">
+                    <div class="pizza-item-top">
+                        <span class="pizza-item-name">Tiramisu da Nonna</span>
+                    </div>
+                    <p class="pizza-item-desc">Inspirada na clássica sobremesa italiana. Creme de mascarpone, chocolate e cacau sobre massa artesanal, criando uma experiência sofisticada e exclusiva.</p>
+                    <span class="pizza-item-price">R$ 69,90</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TRIO DA NONNA -->
+        <div class="category">
+            <div class="category-header">
+                <span class="category-icon">🇮🇹</span>
+                <h2 class="category-title">Trio da Nonna</h2>
+            </div>
+            <p style="font-size:.9rem; color:var(--muted); margin-bottom:18px;">Escolha 3 mini pizzas de 15 cm. Perfeito para compartilhar ou experimentar sabores diferentes.</p>
+            <div class="trio-grid">
+
+                <div class="trio-item">
+                    <div class="trio-item-name">Trio Tradicional</div>
+                    <div class="trio-item-desc">3 mini pizzas do cardápio tradicional</div>
+                    <div class="trio-item-price">R$ 69,90</div>
+                </div>
+
+                <div class="trio-item">
+                    <div class="trio-item-name">Trio Especial</div>
+                    <div class="trio-item-desc">3 mini pizzas do cardápio especial</div>
+                    <div class="trio-item-price">R$ 85,00</div>
+                </div>
+
+                <div class="trio-item">
+                    <div class="trio-item-name">Trio Premium</div>
+                    <div class="trio-item-desc">3 mini pizzas do cardápio premium</div>
+                    <div class="trio-item-price">R$ 110,00</div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="menu-footer">
+        <p>© 2026 <strong>Nonna Adélia</strong> — Todos os direitos reservados.</p>
+        <p class="menu-footer-note">Massa artesanal de longa fermentação natural. Ingredientes selecionados com amor e tradição.</p>
+    </footer>
+
+</body>
+
+</html>
