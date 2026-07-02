@@ -387,3 +387,28 @@ async function gerarPagamentoEAbrir(janelaPagamento) {
         if (btnPagar) btnPagar.textContent = textoOriginal;
     }
 }
+
+// ── Aviso ao voltar do checkout do Mercado Pago ─────────────────
+// O Mercado Pago redireciona de volta pra cá adicionando parâmetros
+// na URL (ex: ?collection_status=approved&...). Detectamos isso ao
+// carregar a página e mostramos um aviso claro pro cliente.
+function verificarRetornoPagamento() {
+    const params = new URLSearchParams(window.location.search);
+    const status = params.get('collection_status') || params.get('status');
+
+    if (!status) return;
+
+    if (status === 'approved') {
+        alert('✅ Pagamento aprovado! Seu pedido foi confirmado.\n\nSe o WhatsApp não abriu automaticamente, chame a gente pra confirmar o pedido.');
+    } else if (status === 'pending' || status === 'in_process') {
+        alert('⏳ Pagamento em processamento. Assim que for aprovado, seu pedido é confirmado — pode acompanhar pelo WhatsApp.');
+    } else if (status === 'rejected') {
+        alert('❌ O pagamento não foi aprovado. Você pode tentar novamente marcando os itens e clicando em "Pagar agora".');
+    }
+
+    // Limpa os parâmetros da URL pra não repetir o aviso se a página for recarregada.
+    const urlLimpa = window.location.origin + window.location.pathname;
+    window.history.replaceState({}, document.title, urlLimpa);
+}
+
+document.addEventListener('DOMContentLoaded', verificarRetornoPagamento);

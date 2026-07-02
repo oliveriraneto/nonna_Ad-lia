@@ -47,7 +47,10 @@ module.exports = async(req, res) => {
                 failure: 'https://nonna-ad-lia.vercel.app/cardapio.html',
                 pending: 'https://nonna-ad-lia.vercel.app/cardapio.html',
             },
-            auto_return: 'approved',
+            // 'all' garante o redirecionamento de volta ao site mesmo quando
+            // o pagamento fica "pendente" (comum no Pix por alguns segundos)
+            // e não só quando já está aprovado — evita a tela ficar travada.
+            auto_return: 'all',
             // Libera Pix, cartão de crédito e débito no checkout.
             // Mantém bloqueados boleto (ticket) e pagamento em caixa (atm),
             // que não fazem sentido para entrega/retirada de pizza.
