@@ -313,22 +313,72 @@ function montarMensagemConfirmacao() {
     return msg;
 }
 
-// ── Pagamento via Pix + confirmação automática no WhatsApp ─────
+// ── Pagamento via Mercado Pago (valor gerado automaticamente) ──
+// Em vez de abrir sempre o mesmo link fixo, chamamos nossa função
+// serverless (/api/create-preference) que devolve um link de checkout
+// já com o valor exato do pedido — o cliente não digita nada.
 function pagarComPix(event) {
     if (event) event.preventDefault();
     if (!validar()) return false;
 
-    // 1. Abre o link de pagamento (Mercado Pago / Pix)
-    window.open('https://link.mercadopago.com.br/nonnadeliapizza', '_blank');
+    // Abre a aba já no clique (gesto do usuário) para não ser bloqueada
+    // pelo navegador enquanto esperamos a resposta do servidor.
+    const janelaPagamento = window.open('', '_blank');
+    if (janelaPagamento) {
+        janelaPagamento.document.write('Preparando seu pagamento, aguarde...');
+    }
 
-    // 2. Logo em seguida, abre o WhatsApp já com a mensagem de confirmação
-    //    do pagamento e o resumo do pedido, para o cliente só enviar.
-    setTimeout(() => {
-        const url = 'https://api.whatsapp.com/send/?phone=' + WHATSAPP_NUMERO +
-            '&text=' + encodeURIComponent(montarMensagemConfirmacao()) +
-            '&type=phone_number&app_absent=0';
-        window.open(url, '_blank');
-    }, 800);
-
+    gerarPagamentoEAbrir(janelaPagamento);
     return false;
+}
+
+async function gerarPagamentoEAbrir(janelaPagamento) {
+    const btnPagar = document.getElementById('btnPagar');
+    const textoOriginal = btnPagar ? btnPagar.textContent : '';
+
+    try {
+        if (btnPagar) btnPagar.textContent = 'Gerando pagamento...';
+
+        const marcados = getItensMarcados();
+        const entrega = isEntrega();
+        const frete = getFreteAtual();
+
+        const itens = marcados.map(item => ({ nome: item.nome, preco: item.preco }));
+        if (entrega && frete > 0) {
+            itens.push({ nome: 'Taxa de entrega', preco: frete });
+        }
+
+        const resposta = await fetch('/api/create-preference', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ itens }),
+        });
+
+        const data = await resposta.json();
+
+        if (!resposta.ok || !data.init_point) {
+            throw new Error(data.error || 'Não foi possível gerar o pagamento.');
+        }
+
+        if (janelaPagamento) {
+            janelaPagamento.location.href = data.init_point;
+        } else {
+            window.open(data.init_point, '_blank');
+        }
+
+        // Logo em seguida, abre o WhatsApp já com a mensagem de confirmação
+        // do pagamento e o resumo do pedido, para o cliente só enviar.
+        setTimeout(() => {
+            const url = 'https://api.whatsapp.com/send/?phone=' + WHATSAPP_NUMERO +
+                '&text=' + encodeURIComponent(montarMensagemConfirmacao()) +
+                '&type=phone_number&app_absent=0';
+            window.open(url, '_blank');
+        }, 800);
+
+    } catch (err) {
+        if (janelaPagamento) janelaPagamento.close();
+        alert(err.message || 'Erro ao gerar o pagamento. Tente novamente em instantes.');
+    } finally {
+        if (btnPagar) btnPagar.textContent = textoOriginal;
+    }
 }
