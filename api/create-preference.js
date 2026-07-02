@@ -41,11 +41,11 @@ module.exports = async(req, res) => {
 
         const preference = {
             items,
-            // URLs de retorno após o pagamento — ajuste para o domínio real do site.
+            // URLs de retorno após o pagamento.
             back_urls: {
-                success: 'https://SEU-DOMINIO.vercel.app/cardapio.html',
-                failure: 'https://SEU-DOMINIO.vercel.app/cardapio.html',
-                pending: 'https://SEU-DOMINIO.vercel.app/cardapio.html',
+                success: 'https://nonna-ad-lia.vercel.app/cardapio.html',
+                failure: 'https://nonna-ad-lia.vercel.app/cardapio.html',
+                pending: 'https://nonna-ad-lia.vercel.app/cardapio.html',
             },
             auto_return: 'approved',
             // Restringe o checkout só ao Pix, já que o botão diz "Pagar com Pix".
