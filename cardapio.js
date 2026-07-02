@@ -297,7 +297,7 @@ function montarMensagemConfirmacao() {
     const frete = getFreteAtual();
     const total = sub + frete;
 
-    let msg = 'Olá, Nonna Adélia! Acabei de realizar o pagamento via Pix ✅\n\n';
+    let msg = 'Olá, Nonna Adélia! Acabei de realizar o pagamento ✅\n\n';
     msg += 'Meu pedido:\n';
     msg += marcados.map(item => '  - ' + item.nome + ' - ' + fmt(item.preco)).join('\n') + '\n\n';
 

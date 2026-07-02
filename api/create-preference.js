@@ -48,12 +48,11 @@ module.exports = async(req, res) => {
                 pending: 'https://nonna-ad-lia.vercel.app/cardapio.html',
             },
             auto_return: 'approved',
-            // Restringe o checkout só ao Pix, já que o botão diz "Pagar com Pix".
-            // Remova este bloco se quiser aceitar cartão/boleto também.
+            // Libera Pix, cartão de crédito e débito no checkout.
+            // Mantém bloqueados boleto (ticket) e pagamento em caixa (atm),
+            // que não fazem sentido para entrega/retirada de pizza.
             payment_methods: {
                 excluded_payment_types: [
-                    { id: 'credit_card' },
-                    { id: 'debit_card' },
                     { id: 'ticket' },
                     { id: 'atm' },
                 ],
