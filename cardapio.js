@@ -250,6 +250,11 @@ function calcularTotal() {
     infoEl.textContent = `${marcados.length} item${marcados.length > 1 ? 's' : ''} marcado${marcados.length > 1 ? 's' : ''}`;
     valorEl.textContent = `Total: ${fmt(total)}`;
 
+    const listaEl = document.getElementById('orderItemsList');
+    listaEl.innerHTML = marcados
+        .map(item => `<li><span>${item.nome}</span><span>${fmt(item.preco)}</span></li>`)
+        .join('');
+
     document.getElementById('sumSubtotal').textContent = fmt(sub);
     document.getElementById('sumFreteRow').style.display = entrega ? 'flex' : 'none';
     document.getElementById('sumFrete').textContent = fmt(frete);
