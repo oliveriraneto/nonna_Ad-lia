@@ -1,0 +1,12 @@
+# Segredos — nunca sobem pro GitHub
+.env
+.env.local
+.env.*.local
+
+# Dependências / build
+node_modules/
+.vercel/
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
